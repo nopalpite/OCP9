@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% load static %}
+
+    <title>LITReview</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">
+                <img src="{% static "accounts/img/logo.png" %}" height="80" alt="CoolBrand">
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                
+                <div class="navbar-nav ms-auto">
+                    <a href="#" class="nav-item nav-link">Sign in</a>
+                    <a href="#" class="nav-item nav-link">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+
+    {% endblock content %}
+</body>
+</html>

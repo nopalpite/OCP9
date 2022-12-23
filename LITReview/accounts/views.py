@@ -26,4 +26,4 @@ def signin(request):
             return redirect('/')
 
     context = {'form': form}
-    return render(request, 'accounts/signup.html', context)
+    return render(request, 'accounts/signin.html', context)

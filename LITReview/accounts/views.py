@@ -22,8 +22,8 @@ def signin(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             user = form.get_user()
-            login =(request, user)
-            return redirect('/')
+            login(request, user)
+            return redirect('/reviews/feeds/')
 
     context = {'form': form}
     return render(request, 'accounts/signin.html', context)

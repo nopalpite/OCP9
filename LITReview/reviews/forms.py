@@ -1,6 +1,6 @@
 from .models import Ticket, Review, UserFollows
 from bootstrap5.widgets import RadioSelectButtonGroup
-
+from django.core.exceptions import NON_FIELD_ERRORS
 from django.forms import ModelForm
     
 
@@ -19,6 +19,7 @@ class ReviewForm(ModelForm):
             'rating': 'Note',
             'body': 'Commentaire'
         }
+        
 
 class SubscriptionForm(ModelForm):
     class Meta:
@@ -27,3 +28,4 @@ class SubscriptionForm(ModelForm):
         labels = {
             'followed_user': "Nom d'utilisateur"
         }
+        

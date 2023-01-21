@@ -62,7 +62,7 @@ def subscriptions(request):
             try:
                 user_follow.save()
             except IntegrityError:
-                print("loooool")
+                print("Vous êtes déjà abonné à cet utilisateur")
 
     context = {'form': form, 'users_follows':user_follows, 'user_followed_by': user_followed_by}
     return render(request, 'reviews/subscriptions.html', context)

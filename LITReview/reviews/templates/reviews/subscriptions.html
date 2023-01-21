@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row justify-content-center align-self-center">
         <div class="col-md-10">
-            <h2>Suivre d'autres utilisateurs</h2>
+            <h2 class="text-center">Suivre d'autres utilisateurs</h2>
             <form method="POST" action="">
                 {% csrf_token %}
                 {% bootstrap_form form %}
@@ -13,11 +13,21 @@
             </form>
         </div>
         <div class="col-md-10">
-            <h2>Abonnements</h2>
-            {% for user_follow in users_follows %}
+            <h2 class="text-center">Abonnements</h2>
+            <table class="table  table-borderless">
+                {% for user_follow in users_follows %}
+                    <tbody>
+                        <td>{{user_follow.followed_user}}</td>
+                        <td class="text-end"><a href="/reviews/delete_subscription/{{user_follow.id}}" class="btn btn-secondary">Désabonner</a></td>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-10">
+            <h2 class="text-center">Abonnés</h2>
+            {% for user_follow in user_followed_by %}
             <div>
-                <td>{{user_follow.followed_user}}</td>
-                <a href="/reviews/delete_subscription/{{user_follow.id}}" class="btn btn-secondary">Désabonner</a>
+                <td>{{user_follow.user}}</td>
             </div>
             {% endfor %}
         </div>

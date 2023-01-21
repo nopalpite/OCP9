@@ -1,6 +1,6 @@
 from itertools import chain
 
-from .forms import TicketForm, ReviewForm
+from .forms import TicketForm, ReviewForm, SubscriptionForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -45,3 +45,11 @@ def create_ticket_and_review(request):
     context = {'ticket_form': ticket_form,'review_form': review_form}
     return render(request, 'reviews/create_ticket_and_review.html', context)
 
+@login_required
+def subscription(request):
+    if request.method != 'POST':
+        form = SubscriptionForm()
+    else:
+        form = SubscriptionForm(request.POST)
+        if form.is_valid():
+            user_follows = form.save(commit=False)

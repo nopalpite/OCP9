@@ -1,4 +1,4 @@
-from .models import Ticket, Review
+from .models import Ticket, Review, UserFollows
 from bootstrap5.widgets import RadioSelectButtonGroup
 
 from django.forms import ModelForm
@@ -20,3 +20,10 @@ class ReviewForm(ModelForm):
             'body': 'Commentaire'
         }
 
+class SubscriptionForm(ModelForm):
+    class Meta:
+        model = UserFollows
+        fields = ['followed_user']
+        labels = {
+            'followed_user': "Nom d'utilisateur"
+        }

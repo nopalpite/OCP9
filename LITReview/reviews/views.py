@@ -1,8 +1,10 @@
 from itertools import chain
-
+from .models import UserFollows
 from .forms import TicketForm, ReviewForm, SubscriptionForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
+
 
 @login_required
 def feeds(request):
@@ -46,10 +48,21 @@ def create_ticket_and_review(request):
     return render(request, 'reviews/create_ticket_and_review.html', context)
 
 @login_required
-def subscription(request):
+def subscriptions(request):
+    user_follows = UserFollows.objects.filter(user_id=request.user.id)
+    user_followed_by = UserFollows.objects.filter(followed_user_id=request.user.id)
+    
     if request.method != 'POST':
         form = SubscriptionForm()
     else:
         form = SubscriptionForm(request.POST)
         if form.is_valid():
-            user_follows = form.save(commit=False)
+            user_follow = form.save(commit=False)
+            user_follow.user = request.user
+            try:
+                user_follow.save()
+            except IntegrityError:
+                print("loooool")
+
+    context = {'form': form, 'users_follows':user_follows, 'user_followed_by': user_followed_by}
+    return render(request, 'reviews/subscriptions.html', context)

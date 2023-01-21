@@ -14,14 +14,11 @@
         </div>
         <div class="col-md-10">
             <h2>Abonnements</h2>
-            {% for user in users_follows %}
-            <h1>{{user.followed_user}}</h1>
-            {% endfor %}
-        </div>
-        <div class="col-md-10">
-            <h2>Abonnés</h2>
-            {% for user in user_followed_by %}
-            <h1>{{user.user}}</h1>
+            {% for user_follow in users_follows %}
+            <div>
+                <td>{{user_follow.followed_user}}</td>
+                <a href="/reviews/delete_subscription/{{user_follow.id}}" class="btn btn-secondary">Désabonner</a>
+            </div>
             {% endfor %}
         </div>
     </div>

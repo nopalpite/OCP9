@@ -66,3 +66,9 @@ def subscriptions(request):
 
     context = {'form': form, 'users_follows':user_follows, 'user_followed_by': user_followed_by}
     return render(request, 'reviews/subscriptions.html', context)
+    
+@login_required
+def delete_subscription(request, id):
+    subscription = UserFollows.objects.get(pk=id)
+    subscription.delete()
+    return redirect('/reviews/subscriptions/')

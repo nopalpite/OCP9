@@ -14,22 +14,24 @@
         </div>
         <div class="col-md-10">
             <h2 class="text-center">Abonnements</h2>
-            <table class="table  table-borderless">
+            <table class="table  table-striped table-primary table-borderless">
                 {% for user_follow in users_follows %}
                     <tbody>
                         <td>{{user_follow.followed_user}}</td>
-                        <td class="text-end"><a href="/reviews/delete_subscription/{{user_follow.id}}" class="btn btn-secondary">Désabonner</a></td>
+                        <th class="text-end"><a href="/reviews/delete_subscription/{{user_follow.id}}" class="btn btn-secondary">Désabonner</a></th>
                     </tbody>
                 {% endfor %}
             </table>
         </div>
         <div class="col-md-10">
             <h2 class="text-center">Abonnés</h2>
-            {% for user_follow in user_followed_by %}
-            <div>
-                <td>{{user_follow.user}}</td>
-            </div>
-            {% endfor %}
+            <table class="table  table-striped table-primary table-borderless">
+                {% for user_follow in user_followed_by %}
+                <tbody>
+                    <td>{{user_follow.user}}</td>
+                </tbody>
+                {% endfor %}
+            </table>
         </div>
     </div>
 </div>

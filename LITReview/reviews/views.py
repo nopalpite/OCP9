@@ -23,6 +23,20 @@ def feeds(request):
     print(posts)
     return render(request, 'reviews/feeds.html', context={'posts': posts})
 
+@login_required
+def posts(request):
+    reviews = Review.objects.filter(user=request.user.id)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = Ticket.objects.filter(user=request.user.id)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created, 
+        reverse=True
+    )
+    print(posts)
+    return render(request, 'reviews/posts.html', context={'posts': posts})
 
 @login_required
 def create_ticket(request):

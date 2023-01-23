@@ -1,0 +1,18 @@
+{% extends './base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center align-self-center">
+        {% for post in posts %}
+            {% if post.content_type == 'TICKET' %} 
+                {% include './ticket_snippet.html' %}
+            {% elif post.content_type == 'REVIEW' %}
+                {% include './review_snippet.html' %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}

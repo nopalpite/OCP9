@@ -8,10 +8,10 @@
     {% bootstrap_css %}
     {% load static %}
 
-    <title>LITReview</title>
+    <title>Utilisateur {{ user.get_username }}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class=" sticky-top navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a href="#" class="navbar-brand">
                 <img src="{% static "reviews/img/logo.png" %}" height="80" alt="CoolBrand">

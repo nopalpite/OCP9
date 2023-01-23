@@ -1,15 +1,28 @@
 from itertools import chain
-from .models import UserFollows
+
+from .models import UserFollows, Review, Ticket
 from .forms import TicketForm, ReviewForm, SubscriptionForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-
+from django.db.models import CharField, Value
 
 @login_required
 def feeds(request):
- 
-    return render(request, 'reviews/feeds.html')
+    user_follows = UserFollows.objects.filter(user_id=request.user.id).values('followed_user')
+    reviews = Review.objects.filter(user_id__in=user_follows) | Review.objects.filter(user_id=request.user.id)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    tickets = Ticket.objects.filter(user_id__in=user_follows) | Ticket.objects.filter(user_id=request.user.id)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created, 
+        reverse=True
+    )
+    print(posts)
+    return render(request, 'reviews/feeds.html', context={'posts': posts})
+
 
 @login_required
 def create_ticket(request):

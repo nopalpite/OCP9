@@ -1,0 +1,23 @@
+<div class="col-md-8 border border-primary mb-4">
+    <div class="mt-4">{{ post.user }} a publié une critique</div>
+    <div class="text-end">{{ post.time_created }}</div>
+    <div  class="mb-4">
+        <span>{{ post.headline }}</span>
+        {% if  post.rating == 0  %}<span>★</span>{% endif %}
+        {% if  post.rating == 1 %}<span>★★</span>{% endif %}
+        {% if  post.rating == 2 %}<span>★★★</span>{% endif %}
+        {% if  post.rating == 3 %}<span>★★★★</span>{% endif %}
+        {% if  post.rating == 4 %}<span>★★★★★</span>{% endif %}
+        {% if  post.rating == 5 %}<span>★★★★★★</span>{% endif %}
+    </div>
+    <div>{{ post.body }}</div>
+    <div class="container border border-primary mb-4 mt-4">
+        <div class="mt-4">Ticket - {{ post.ticket.user }}</div>
+        <div class="text-end">{{ post.ticket.time_created }}</div>
+        <div>{{ post.ticket.title }}</div>
+        {% if post.ticket.image %}<img src="{{ post.ticket.image.url }}" alt="book_image" class="w-25 p-3">{% endif %}
+        {% if post.user != user %}
+        <div class="text-end mb-4"><a href="#" class="btn btn-primary">Créer une critique</a></div>
+        {% endif %}
+    </div>
+</div>

@@ -7,5 +7,16 @@
             <a href="/reviews/create_ticket/" class="col btn btn-primary m-5">Demander une critique</a>
             <a href="/reviews/create_ticket_and_review/" class="col btn btn-primary m-5">Créer une critique</a>
     </div>
+    <div class="row justify-content-center align-self-center">
+        {% for post in posts %}
+            {% if post.content_type == 'TICKET' %} 
+                {% include './ticket_snippet.html' %}
+            {% elif post.content_type == 'REVIEW' %}
+                {% include './review_snippet.html' %}
+            {% endif %}
+        {% endfor %}
+    </div>
 </div>
+
+
 {% endblock content %}

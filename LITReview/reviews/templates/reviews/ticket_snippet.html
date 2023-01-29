@@ -1,9 +1,13 @@
 <div class="col-md-8 border border-primary mb-4">
+{% if user == post.user %}
+    <div class="mt-4">Vous avez demandé une critique</div>
+{% else %}
     <div class="mt-4">{{ post.user }} a demandé une critique</div>
+{% endif %}
     <div class="text-end">{{ post.time_created }}</div>
     <div>{{ post.title }}</div>
 {% if post.image %}<img src="{{ post.image.url }}" alt="book_image" class="w-25 p-3">{% endif %}    
-{% if post.user != user %}
-    <div class="text-end mb-4"><a href="#" class="btn btn-primary">Créer une critique</a></div>
+{% if post not in tickets_reviewed %}
+    <div class="text-end mb-4"><a href="/reviews/create_review/{{ post.id }}" class="btn btn-primary">Créer une critique</a></div>
 {% endif %}
 </div>

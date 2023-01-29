@@ -8,7 +8,6 @@
             <h2>Créer une critique</h2>
             <form method="POST" action="" enctype="multipart/form-data">
                 {% csrf_token %}
-                {% bootstrap_form ticket_form %}
                 {% bootstrap_form review_form %}
                 <input class="btn btn-primary" type="submit" value="Envoyer">
             </form>
@@ -18,4 +17,3 @@
 
 
 {% endblock content %}
-

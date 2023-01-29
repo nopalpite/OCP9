@@ -20,8 +20,12 @@ def feeds(request):
         key=lambda post: post.time_created, 
         reverse=True
     )
-    print(posts)
-    return render(request, 'reviews/feeds.html', context={'posts': posts})
+    user_reviews = Review.objects.filter(user_id=request.user.id)
+    tickets_reviewed = []
+    for review in user_reviews:
+        if review.ticket in tickets:
+            tickets_reviewed.append(review.ticket)
+    return render(request, 'reviews/feeds.html', context={'posts': posts, 'tickets_reviewed': tickets_reviewed})
 
 @login_required
 def posts(request):
@@ -35,7 +39,6 @@ def posts(request):
         key=lambda post: post.time_created, 
         reverse=True
     )
-    print(posts)
     return render(request, 'reviews/posts.html', context={'posts': posts})
 
 @login_required
@@ -75,6 +78,23 @@ def create_ticket_and_review(request):
     return render(request, 'reviews/create_ticket_and_review.html', context)
 
 @login_required
+def create_review(request, id):
+    ticket = Ticket.objects.get(pk=id)
+    if request.method != 'POST':
+        review_form = ReviewForm()
+    else:
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect('/reviews/feeds/')
+    context = {'review_form': review_form, 'ticket': ticket}
+    return render(request, 'reviews/create_review.html', context)
+
+
+@login_required
 def subscriptions(request):
     user_follows = UserFollows.objects.filter(user_id=request.user.id)
     user_followed_by = UserFollows.objects.filter(followed_user_id=request.user.id)
@@ -97,5 +117,9 @@ def subscriptions(request):
 @login_required
 def delete_subscription(request, id):
     subscription = UserFollows.objects.get(pk=id)
-    subscription.delete()
+    if subscription.user == request.user:
+        subscription.delete()
+        print("abonnement supprimé")
+    else:
+        print("vous n'avez pas le droit de faire ça")
     return redirect('/reviews/subscriptions/')

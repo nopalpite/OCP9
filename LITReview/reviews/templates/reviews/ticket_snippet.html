@@ -4,8 +4,10 @@
 {% else %}
     <div class="mt-4">{{ post.user }} a demandé une critique</div>
 {% endif %}
+    
     <div class="text-end">{{ post.time_created }}</div>
     <div>{{ post.title }}</div>
+    <div>{{ post.description }}</div>
 {% if post.image %}<img src="{{ post.image.url }}" alt="book_image" class="w-25 p-3">{% endif %}    
 {% if post not in tickets_reviewed %}
     <div class="text-end mb-4"><a href="/reviews/create_review/{{ post.id }}" class="btn btn-primary">Créer une critique</a></div>

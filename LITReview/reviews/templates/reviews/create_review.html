@@ -2,10 +2,22 @@
 {% load bootstrap5 %}
 
 {% block content %}
-<div class="container">
+
+<div class="container mb-4">
+    
     <div class="row justify-content-center align-self-center">
         <div class="col-md-10">
             <h2>Créer une critique</h2>
+            <div class="container border border-primary mb-4 mt-4">
+                <div class="mt-4">Vous êtes en train de répondre à</div>
+                    <div class="container border border-primary mb-4 mt-4">
+                        <div class="text-end mt-4">{{ ticket.time_created }}</div>
+                        <div class="mt-4">{{ ticket.user }} a demandé une critique</div>
+                        <div class="mt-4">{{ ticket.title }}</div>
+                        <div class="mt-4 mb-4">{{ ticket.description }}</div>
+                        {% if ticket.image %}<img src="{{ ticket.image.url }}" alt="book_image" class="w-25 p-3 mt-4 mb-4" >{% endif %}
+                    </div>
+            </div>
             <form method="POST" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% bootstrap_form review_form %}

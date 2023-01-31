@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-10">
             <h2 class="text-center">Abonnements</h2>
-            <table class="table  table-striped table-primary table-borderless">
+            <table class="table  table-striped table-borderless">
                 {% for user_follow in users_follows %}
                     <tbody>
                         <td>{{user_follow.followed_user}}</td>
@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-10">
             <h2 class="text-center">Abonnés</h2>
-            <table class="table  table-striped table-primary table-borderless">
+            <table class="table  table-striped table-borderless">
                 {% for user_follow in user_followed_by %}
                 <tbody>
                     <td>{{user_follow.user}}</td>

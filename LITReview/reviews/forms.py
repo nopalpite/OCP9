@@ -2,7 +2,17 @@ from .models import Ticket, Review, UserFollows
 from bootstrap5.widgets import RadioSelectButtonGroup
 from django.core.exceptions import NON_FIELD_ERRORS
 from django.forms import ModelForm
-    
+from django import forms
+
+CHOICES =(
+    ("0", "0"),
+    ("1", "1"),
+    ("2", "2"),
+    ("3", "3"),
+    ("4", "4"),
+    ("5", "5"),
+)
+      
 
 
 class TicketForm(ModelForm):
@@ -11,6 +21,7 @@ class TicketForm(ModelForm):
         fields = ['title', 'description', 'image']
 
 class ReviewForm(ModelForm):
+    rating = forms.ChoiceField(choices=CHOICES, widget=RadioSelectButtonGroup)
     class Meta:
         model = Review
         fields = ['headline', 'rating', 'body']

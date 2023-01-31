@@ -93,9 +93,6 @@ def create_review(request, id):
     context = {'review_form': review_form, 'ticket': ticket}
     return render(request, 'reviews/create_review.html', context)
 
-@login_required
-def update_ticket(request):
-    pass
 
 @login_required
 def update_review(request, id):

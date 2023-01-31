@@ -93,6 +93,69 @@ def create_review(request, id):
     context = {'review_form': review_form, 'ticket': ticket}
     return render(request, 'reviews/create_review.html', context)
 
+@login_required
+def update_ticket(request):
+    pass
+
+@login_required
+def update_review(request, id):
+    review = Review.objects.get(pk=id)
+    if review.user == request.user:
+        if request.method != 'POST':
+            review_form = ReviewForm(instance=review)
+        else:
+            review_form = ReviewForm(request.POST, instance=review)
+            if review_form.is_valid():
+                review = review_form.save()
+                review.save()
+                return redirect('/reviews/posts/')
+        context = {'review_form': review_form, 'ticket': review.ticket}
+    else:
+        print("vous n'avez pas le droit de faire ça")
+        context = {}
+        return redirect('/reviews/posts/')
+    
+    return render(request, 'reviews/update_review.html', context)
+
+@login_required
+def delete_review(request, id):
+    review = Review.objects.get(pk=id)
+    if review.user == request.user:
+        review.delete()
+        print("review supprimée")
+    else:
+        print("vous n'avez pas le droit de faire ça")
+    return redirect('/reviews/posts/')
+
+@login_required
+def update_ticket(request, id):
+    ticket = Ticket.objects.get(pk=id)
+    if ticket.user == request.user:
+        if request.method != 'POST':
+            ticket_form = TicketForm(instance=ticket)
+        else:
+            ticket_form = TicketForm(request.POST, request.FILES, instance=ticket)
+            if ticket_form.is_valid():
+                ticket = ticket_form.save()
+                ticket.save()
+                return redirect('/reviews/posts/')
+        context = {'form': ticket_form }
+    else:
+        print("vous n'avez pas le droit de faire ça")
+        context = {}
+        return redirect('/reviews/posts/')
+    
+    return render(request, 'reviews/update_ticket.html', context)
+
+@login_required
+def delete_ticket(request, id):
+    ticket = Ticket.objects.get(pk=id)
+    if ticket.user == request.user:
+        ticket.delete()
+        print("ticket supprimé")
+    else:
+        print("vous n'avez pas le droit de faire ça")
+    return redirect('/reviews/posts/')
 
 @login_required
 def subscriptions(request):

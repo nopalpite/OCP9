@@ -12,4 +12,11 @@
 {% if post not in tickets_reviewed %}
     <div class="text-end mb-4"><a href="/reviews/create_review/{{ post.id }}" class="btn btn-primary">Créer une critique</a></div>
 {% endif %}
+{% if request.get_full_path == "/reviews/posts/" %}
+    <div class="text-end mb-4">
+        <span class="m-2"><a href="/reviews/update_ticket/{{ post.id }}" class="btn btn-primary">Modifier</a></span>
+        <span class="m-2"><a href="/reviews/delete_ticket/{{ post.id }}" class="btn btn-primary">Supprimer</a></span>
+    </div>
+{% endif %}
+
 </div>

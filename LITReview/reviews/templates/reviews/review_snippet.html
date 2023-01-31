@@ -19,6 +19,13 @@
         <div class="mt-4">Ticket - {{ post.ticket.user }}</div>
         <div class="text-end">{{ post.ticket.time_created }}</div>
         <div>{{ post.ticket.title }}</div>
+        <div>{{ post.ticket.description }}</div>
         {% if post.ticket.image %}<img src="{{ post.ticket.image.url }}" alt="book_image" class="w-25 p-3">{% endif %}
     </div>
+    {% if request.get_full_path == "/reviews/posts/" %}
+    <div class="text-end mb-4">
+        <span class="m-2"><a href="/reviews/update_review/{{ post.id }}" class="btn btn-primary">Modifier</a></span>
+        <span class="m-2"><a href="/reviews/delete_review/{{ post.id }}" class="btn btn-primary">Supprimer</a></span>
+    </div>
+    {% endif %}
 </div>

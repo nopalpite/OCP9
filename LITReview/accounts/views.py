@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
+
 def signup(request):
+    '''signup function'''
     if request.method != 'POST':
         form = UserCreationForm()
     else:
@@ -17,7 +18,9 @@ def signup(request):
     context = {'form': form}
     return render(request, 'accounts/signup.html', context)
 
+
 def signin(request):
+    '''signin funtion'''
     if request.method != 'POST':
         form = AuthenticationForm(request)
     else:
@@ -30,8 +33,9 @@ def signin(request):
     context = {'form': form}
     return render(request, 'accounts/signin.html', context)
 
+
 @login_required
 def signout(request):
+    '''signout function'''
     logout(request)
     return redirect('/accounts/signin/')
-

@@ -55,3 +55,18 @@ Connectez vous à l'adresse suivante dans un navigateur:
 ```
 http://localhost:8000
 ```
+## paramètre de tests
+
+Pour les besoins de tests, 4 utilisateurs sont déjà présent dans la base de données ainsi que des ticket et des critiques pré-rédigées:
+
+| utilisateur   | Mot de passe  |
+| ------------- | ------------- |
+| user1         | UserPassword! |
+| user2         | UserPassword! |
+| user3         | UserPassword! |
+| user4         | UserPassword! |
+
+Vous pouvez également accéder à l'interface d'administration à l'adresse suivante : 
+http://localhost:8000/admin
+
+login: admin/mdp: admin (A changer impérativement pour sécuriser l'application)

@@ -33,6 +33,7 @@ class ReviewForm(ModelForm):
         
 
 class SubscriptionForm(ModelForm):
+
     class Meta:
         model = UserFollows
         fields = ['followed_user']

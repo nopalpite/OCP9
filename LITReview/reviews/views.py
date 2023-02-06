@@ -10,7 +10,7 @@ from django.db.models import CharField, Value
 @login_required
 def feeds(request):
     user_follows = UserFollows.objects.filter(user_id=request.user.id).values('followed_user')
-    reviews = Review.objects.filter(user_id__in=user_follows) | Review.objects.filter(user_id=request.user.id)
+    reviews = Review.objects.filter(user_id__in=user_follows) | Review.objects.filter(user_id=request.user.id) | Review.objects.filter(ticket__user=request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = Ticket.objects.filter(user_id__in=user_follows) | Ticket.objects.filter(user_id=request.user.id)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))

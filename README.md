@@ -51,10 +51,8 @@ Lancez le serveur:
 ```
 python manage.py runserver
 ```
-Connectez vous à l'adresse suivante dans un navigateur:
-```
-http://localhost:8000
-```
+Connectez vous à l'adresse suivante dans un navigateur: http://localhost:8000
+
 ## paramètre de tests
 
 Pour les besoins de tests, 4 utilisateurs sont déjà présent dans la base de données ainsi que des ticket et des critiques pré-rédigées:

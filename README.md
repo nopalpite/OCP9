@@ -53,5 +53,5 @@ python manage.py runserver
 ```
 Connectez vous à l'adresse suivante dans un navigateur:
 ```
-http://127.0.0.1:8000
+http://localhost:8000
 ```

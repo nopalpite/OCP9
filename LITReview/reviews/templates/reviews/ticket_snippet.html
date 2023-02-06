@@ -1,4 +1,4 @@
-<div class="col-md-8 border border-primary mb-4">
+<div class="col-md-8 border border-success mb-4">
 {% if user == post.user %}
     <div class="mt-4">Vous avez demandé une critique</div>
 {% else %}
@@ -6,7 +6,7 @@
 {% endif %}
     
     <div class="text-end">{{ post.time_created }}</div>
-    <div>{{ post.title }}</div>
+    <div class="fw-bold">{{ post.title }}</div>
     <div class="mt-4">{{ post.description }}</div>
 {% if post.image %}<img src="{{ post.image.url }}" alt="book_image" class="w-25 p-3">{% endif %}    
 {% if post not in tickets_reviewed %}

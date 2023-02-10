@@ -77,6 +77,6 @@ Placez vous dans le dossier OCP9, et executez la commande suivante:
 flake8 --format=html --htmldir=flake-report LITReview
 ```
 
-Vous pouvez alors consulter de rapport dans le dossier flake-report, en ouvrant le fichier index.html dans un navigateur
+Vous pouvez alors consulter le rapport dans le dossier flake-report, en ouvrant le fichier index.html dans un navigateur
 
 

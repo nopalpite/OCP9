@@ -64,7 +64,19 @@ Pour les besoins de tests, 4 utilisateurs sont déjà présent dans la base de d
 | user3         | UserPassword! |
 | user4         | UserPassword! |
 
-Vous pouvez également accéder à l'interface d'administration à l'adresse suivante : 
+Vous pouvez également accéder à l'interface d'administration à l'adresse suivante: 
 http://localhost:8000/admin
 
 login: admin/mdp: admin (A changer impérativement pour sécuriser l'application)
+
+## conformité pep8
+
+Placez vous dans le dossier OCP9, et executez la commande suivante:
+
+```
+flake8 --format=html --htmldir=flake-report LITReview
+```
+
+Vous pouvez alors consulter de rapport dans le dossier flake-report, en ouvrant le fichier index.html dans un navigateur
+
+
